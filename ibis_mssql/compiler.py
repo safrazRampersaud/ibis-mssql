@@ -5,10 +5,10 @@ import sqlalchemy.dialects.mssql as mssql
 import ibis.common.exceptions as com
 import ibis.expr.datatypes as dt
 import ibis.expr.operations as ops
-import ibis.sql.alchemy as alch
+import ibis.backends.base_sqlalchemy.alchemy as alch
 
 # used for literal translate
-from ibis.sql.alchemy import fixed_arity, unary
+from ibis.backends.base_sqlalchemy.alchemy import fixed_arity, unary
 
 
 def raise_unsupported_op_error(translator, expr, *args):
@@ -18,7 +18,7 @@ def raise_unsupported_op_error(translator, expr, *args):
 
 
 # Aggregation
-# coppied from postgresql compiler
+# copied from postgresql compiler
 # support for of bit columns in aggregate methods
 def _reduction(func_name, cast_type='int32'):
     def reduction_compiler(t, expr):
