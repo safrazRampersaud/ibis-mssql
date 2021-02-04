@@ -13,7 +13,11 @@ def backend():
     port = os.environ.get('IBIS_TEST_MSSQL_PORT', 1433)
     database = os.environ.get('IBIS_TEST_MSSQL_DATABASE', 'master')
     return ibis_mssql.connect(
-        host=host, port=port, user=user, password=password, database=database,
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        database=database,
     )
 
 
