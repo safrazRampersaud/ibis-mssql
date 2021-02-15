@@ -1,5 +1,6 @@
 from ibis.backends.base_sqlalchemy.alchemy import to_sqlalchemy
-
+import ibis.config as cf
+from ibis.config import options
 from ibis_mssql.client import MSSQLClient
 from ibis_mssql.compiler import (  # noqa: F401, E501
     compiles,
@@ -113,7 +114,7 @@ def connect(
         year : int32
         month : int32
     """
-    return MSSQLClient(
+    client = MSSQLClient(
         host=host,
         user=user,
         password=password,
@@ -121,5 +122,14 @@ def connect(
         database=database,
         url=url,
         driver=driver,
-        odbc_driver=odbc_driver,
+        odbc_driver=odbc_driver
     )
+
+    if options.default_backend is None:
+        options.default_backend = client
+
+    with cf.config_prefix('sql'):
+        k = 'default_limit'
+        cf.set_option(k, None)
+
+    return client
