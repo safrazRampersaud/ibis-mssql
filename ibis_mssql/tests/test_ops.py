@@ -1,6 +1,4 @@
 from ibis.tests.expr.mocks import MockConnection
-from ibis_mssql import connect
-from ibis_mssql.client import MSSQLClient, MSSQLTable
 import unittest
 import pytest
 
@@ -16,8 +14,8 @@ class TestOps(unittest.TestCase):
         t2 = self.con.table('star2')
 
         # msc = MSSQLClient()
-        # new_t1 = msc.database(name=t1) <-- we would use this below as instances of ibis_mssql tables
-        # new_t2 = msc.database(name=t2) <-- we would use this below as instances of ibis_mssql tables
+        # new_t1 = msc.database(name=t1) <-- use instances of ibis_mssql tables
+        # new_t2 = msc.database(name=t2) <-- use instances of ibis_mssql tables
 
         predicate = t1['foo_id'] == t2['foo_id']
 
