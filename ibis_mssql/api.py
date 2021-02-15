@@ -122,7 +122,7 @@ def connect(
         database=database,
         url=url,
         driver=driver,
-        odbc_driver=odbc_driver
+        odbc_driver=odbc_driver,
     )
 
     if options.default_backend is None:

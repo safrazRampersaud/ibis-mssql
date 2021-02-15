@@ -21,5 +21,8 @@ class TestOps(unittest.TestCase):
 
         predicate = t1['foo_id'] == t2['foo_id']
 
-        joined = t1.inner_join(t2, predicate)[[t1] + t2.get_columns([c for c in t2.columns if c not in t1.columns])]
-        assert(len(joined.columns) == 6)
+        joined = t1.inner_join(t2, predicate)[
+            [t1]
+            + t2.get_columns([c for c in t2.columns if c not in t1.columns])
+        ]
+        assert len(joined.columns) == 6
